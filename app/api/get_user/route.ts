@@ -30,6 +30,7 @@ const handler = async (req: NextRequest) => {
     }).then((follows) => follows.map((follow) => follow.followerId))
     // @ts-ignore
     user = await user
+    //@ts-ignore
     user.icon = user.icon.length?user.icon:'/DefaultIcon.svg';
 
     return new Response(JSON.stringify({

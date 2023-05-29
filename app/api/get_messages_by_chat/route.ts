@@ -20,7 +20,7 @@ const handler = async (req: NextRequest) => {
     });
     const chat = await prisma.chat.findFirst({where:{id:data.chatId}})
 
-    messages =  (await messages).map((message) => ({
+    const messages_ =  (await messages).map((message) => ({
         id: message.id,
         content: message.message,
         timestamp: message.createdAt,
@@ -34,7 +34,7 @@ const handler = async (req: NextRequest) => {
 
     await prisma.$disconnect();
     // console.log(chat, await messages)
-    return new Response(JSON.stringify({chat_data:chat, messages:(messages)}))
+    return new Response(JSON.stringify({chat_data:chat, messages:(messages_)}))
 }
 
 
