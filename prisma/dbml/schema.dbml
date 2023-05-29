@@ -1,0 +1,170 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Route {
+  id Int [pk, increment]
+  name String [not null, default: '']
+  amount_rates Int [not null, default: 0]
+  rate Float [not null, default: 0]
+  difficulty Int [not null, default: 0]
+  popularity Float [not null, default: 0]
+  langtitudes Float[] [not null]
+  longtitudes Float[] [not null]
+  rest_points RestPoints [not null]
+  FinishedRoutes FinishedRoutes [not null]
+}
+
+Table RestPoints {
+  id Int [pk, increment]
+  name String [not null, default: '']
+  langtitude Float [not null, default: 0]
+  longtitude Float [not null, default: 0]
+  capacity Int [not null, default: 0]
+  description String [not null, default: '']
+  Route Route
+  routeId Int
+}
+
+Table Chat {
+  id Int [pk, increment]
+  name String [not null]
+  users User [not null]
+  messages Message [not null]
+}
+
+Table Message {
+  id Int [pk, increment]
+  User User [not null]
+  userId Int [not null]
+  Chat Chat
+  chatId Int
+  createdAt DateTime [default: `now()`, not null]
+  message String [not null]
+}
+
+Table FinishedRoutes {
+  id Int [pk, increment]
+  route Route [not null]
+  route_id Int [not null]
+  start_date DateTime [default: `now()`, not null]
+  end_date DateTime [default: `now()`, not null]
+  rate Float [not null, default: 5]
+  User User
+  userId Int
+}
+
+Table User {
+  id Int [pk, increment]
+  email String [unique, not null]
+  password String [not null]
+  username String [not null, default: '']
+  full_name String [not null, default: '']
+  phone_number String [not null, default: '']
+  icon String [not null, default: '/DefaultIcon.svg']
+  finishedRoutes FinishedRoutes [not null]
+  chats Chat [not null]
+  Messsage Message [not null]
+  orders Order [not null]
+  followers Follows [not null]
+  following Follows [not null]
+  roles Role [not null]
+  Cart Cart [not null]
+}
+
+Table Follows {
+  follower User [not null]
+  followerId Int [not null]
+  following User [not null]
+  followingId Int [not null]
+
+  indexes {
+    (followerId, followingId) [pk]
+  }
+}
+
+Table Role {
+  id Int [pk, increment]
+  name String [not null]
+  users User [not null]
+}
+
+Table Equipment {
+  id Int [pk, increment]
+  name String [not null]
+  price Float [not null]
+  characteristic String [not null]
+  latitude Float [not null, default: 0]
+  longitude Float [not null, default: 0]
+  amount Int [not null]
+  CartItem CartItem [not null]
+  OrderedEquipment OrderedEquipment [not null]
+}
+
+Table Cart {
+  id Int [pk, increment]
+  userId Int [not null]
+  user User [not null]
+  createdAt DateTime [default: `now()`, not null]
+  returnDate DateTime [default: `now()`, not null]
+  cartItems CartItem [not null]
+}
+
+Table CartItem {
+  id Int [pk, increment]
+  cartId Int [not null]
+  cart Cart [not null]
+  equipmentId Int [not null]
+  equipment Equipment [not null]
+  amount Int [not null]
+}
+
+Table Order {
+  id Int [pk, increment]
+  borrow_date DateTime [default: `now()`, not null]
+  return_date DateTime [default: `now()`, not null]
+  claims String [not null, default: '']
+  user User [not null]
+  user_id Int [not null]
+  checked Boolean [not null, default: false]
+  returned Boolean [not null, default: false]
+  OrderedEquipment OrderedEquipment [not null]
+}
+
+Table OrderedEquipment {
+  equipment Equipment [not null]
+  order Order [not null]
+  equipment_id Int [not null]
+  order_id Int [not null]
+  amount Int [not null]
+
+  indexes {
+    (equipment_id, order_id) [pk]
+  }
+}
+
+Ref: RestPoints.routeId > Route.id [delete: Cascade]
+
+Ref: Message.userId > User.id [delete: Cascade]
+
+Ref: Message.chatId > Chat.id [delete: Cascade]
+
+Ref: FinishedRoutes.route_id > Route.id
+
+Ref: FinishedRoutes.userId > User.id
+
+Ref: Follows.followerId > User.id [delete: Cascade]
+
+Ref: Follows.followingId > User.id [delete: Cascade]
+
+Ref: Cart.userId > User.id [delete: Cascade]
+
+Ref: CartItem.cartId > Cart.id [delete: Cascade]
+
+Ref: CartItem.equipmentId > Equipment.id [delete: Cascade]
+
+Ref: Order.user_id > User.id [delete: Cascade]
+
+Ref: OrderedEquipment.equipment_id > Equipment.id [delete: Cascade]
+
+Ref: OrderedEquipment.order_id > Order.id [delete: Cascade]

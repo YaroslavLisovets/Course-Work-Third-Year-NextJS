@@ -167,3 +167,23 @@
 .flex-between {
     @apply flex justify-between items-center;
 }
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: calc(100vh - 200px); /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+.messages-container {
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.input-container {
+    position: sticky;
+    bottom: 0;
+    background-color: #f3f4f6;
+    padding: 1rem;
+}

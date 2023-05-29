@@ -15,7 +15,8 @@ export default function RootLayout({
     return (
 
         <html>
-        <body>
+        <body suppressHydrationWarning={true} >
+
         <Provider>
             <div className="main">
                 <div className="gradient">

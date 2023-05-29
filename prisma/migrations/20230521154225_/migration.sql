@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "RestPoints" ALTER COLUMN "name" SET DEFAULT '',
+ALTER COLUMN "langtitude" SET DEFAULT 0,
+ALTER COLUMN "longtitude" SET DEFAULT 0,
+ALTER COLUMN "capacity" SET DEFAULT 0,
+ALTER COLUMN "description" SET DEFAULT '';
