@@ -24,12 +24,15 @@ export default function Page() {
     }, [session, status])
     return (
         <div>
+            {/*@ts-ignore*/}
             {(session?.user?.roles.includes('Manager') &&
                 <Link href={"/routes/new"} className={"whitespace-nowrap outline_btn max-h-[35px] mb-3"}>
                     Create New Route
                 </Link>)}
             {isLoading && <Loading isLoading={isLoading}/>}
+            {/*@ts-ignore*/}
             {(!data?.length && !isLoading) && <div>No Routes</div>}
+            {/*@ts-ignore*/}
             {data?.map(route => (
                 <RouteCard route={route}/>
 

@@ -32,9 +32,11 @@ const handler = async (req: NextRequest) => {
     user = await user
     //@ts-ignore
     user.icon = user.icon.length?user.icon:'/DefaultIcon.svg';
-
+//@ts-ignore
     return new Response(JSON.stringify({
+        //@ts-ignore
         username: user?.username,
+        //@ts-ignore
         icon: user?.icon,
         following: ((await followingIds).length),
         followers: ((await followersIds).length)

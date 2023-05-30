@@ -17,7 +17,7 @@ const handler = NextAuth({
 
             const prisma = new PrismaClient()
             const user = await prisma.user.findFirst({where:{email:{equals:session.user.email}}, include:{roles:true}})
-
+            console.log(session);
 
             session.user.name = user?.username;
 

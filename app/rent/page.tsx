@@ -315,6 +315,7 @@ export default () => {
                 <div className="w-full grid grid-cols-3 gap-4">
                     {data?.map((value, index) => (
                         <EquipmentCard key = {index} id={value.id} price={value.price} name={value.name} amount={value.amount}
+                            //@ts-ignore
                                        characteristic={value.characteristic} user_id={session?.user?.id} setLoading={setIsLoading}/>
                     ))}
 

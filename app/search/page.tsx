@@ -50,11 +50,17 @@ const SearchPage = () => {
                 <div className=" flex justify-center items-center">
                     <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
                 </div>)}
+            {/*@ts-ignore*/}
             {data?.map(user => (
-                <div><UserCard user={user} user_id={session?.user?.id}/></div>
+
+                <div><UserCard user={user}
+                               user_id={
+                                   //@ts-ignore
+                                   session?.user?.id}/></div>
 
             ))}
-            {(!data?.length&&!isLoading) && (
+            {/*@ts-ignore*/}
+            {(!data?.length && !isLoading) && (
                 <h1 className={""}>
                     No Users Found
                 </h1>)}

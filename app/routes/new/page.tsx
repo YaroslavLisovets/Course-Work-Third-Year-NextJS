@@ -60,7 +60,10 @@ const CreateRoutePage = () => {
                             Name:
                             <input
                                 type="text"
-                                value={restPoint.name}
+
+                                value={
+                                    //@ts-ignore
+                                    restPoint.name}
                                 onChange={(e) => handleRestPointChange(index, 'name', e.target.value)}
                             />
                         </label>
@@ -68,14 +71,18 @@ const CreateRoutePage = () => {
                             Capacity:
                             <input
                                 type="number"
-                                value={restPoint.capacity}
+                                value={
+                                    //@ts-ignore
+                                    restPoint.capacity}
                                 onChange={(e) => handleRestPointChange(index, 'capacity', parseInt(e.target.value))}
                             />
                         </label>
                         <label>
                             Description:
                             <textarea
-                                value={restPoint.description}
+                                value={
+                                    //@ts-ignore
+                                    restPoint.description}
                                 onChange={(e) => handleRestPointChange(index, 'description', e.target.value)}
                             ></textarea>
                         </label>
